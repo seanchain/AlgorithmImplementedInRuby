@@ -27,8 +27,7 @@ module Sort
             num[j + 1] = curr if j != i - 1
         end
     end
-
-
+    
     module_function :selSort, :bubbleSort, :insertSort
     def shellSort num
     
@@ -36,6 +35,10 @@ module Sort
     
 end
 
-num = [1, 4, 3, 6, 14, 7, 5, 2]
-Sort.bubbleSort num
-p num
+num1 = [1, 4, 3, 6, 14, 7, 5, 2]
+num2 = [2, 5, 3, 12, 4, 2, 7, 6]
+
+Sort.bubbleSort num1
+Sort.selSort num2
+p num1
+p num2
