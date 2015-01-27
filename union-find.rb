@@ -7,7 +7,6 @@
 #def find p p所在分量的标识符
 #def connected p, q 查看p和q是否存在于同一分量
 #def count 联通分量的数量
-#
 class UF
 	attr_reader :id
 	def initialize n
@@ -19,19 +18,29 @@ class UF
 		return @count
 	end
 	def connected p, q
-		return (find(p) == find(q))
+		return (find1(p) == find1(q))
 	end
-	def find p
+=begin
+unio1和find1使用的是
+=end
+
+	def find1 p
 		return @id[p]
 	end
-	def union p, q
-		pID, qID = find(p), find(q)
+	def union1 p, q
+		pID, qID = find1(p), find1(q)
 		return if pID == qID
 		(0...@id.size).each do |i|
 			id[i] = qID if id[i] == pID
 		end
 		@count -= 1
 	end
+
+	def find2
+	end
+	def union2
+	end
+
 end
 
 def getFileNodes filename
@@ -53,7 +62,7 @@ File.open "tinyUF.txt", "r" do |file|
 		ary = line.chomp!.split(' ').map{|str| str.to_i}
 		p, q = ary[0], ary[1]
 		next if uf.connected p, q
-		uf.union p, q
+		uf.union1 p, q
 		printf "%d  %d\n", p, q
 	end
 end
