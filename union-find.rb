@@ -21,21 +21,22 @@ class UF
 		return (find1(p) == find1(q))
 	end
 =begin
-unio1和find1使用的是
+	unio1和find1使用的是quick-find方法保证当且仅当id[p]等于id[q]的时候p和q是连同的，即在同一连通图中所有的出点在id[]中的值必须全部相同
 =end
-
 	def find1 p
 		return @id[p]
 	end
 	def union1 p, q
 		pID, qID = find1(p), find1(q)
-		return if pID == qID
+		return if pID == qID  #如果p和q已经在相同的分量之中则不需要采取任何行动
 		(0...@id.size).each do |i|
-			id[i] = qID if id[i] == pID
+			id[i] = qID if id[i] == pID  #将p的分量从命名为q的名称
 		end
 		@count -= 1
 	end
-
+=begin
+	union1使用的quick-find问题有一定的问题因为每一次的union操作都需要进行扫描整个数组
+=end
 	def find2
 	end
 	def union2
