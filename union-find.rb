@@ -21,7 +21,7 @@ class UF
 	def connected p, q
 		#return (find1(p) == find1(q))
 		#return (find2(p) == find2(q))
-		return (find3(p) == find3(q))
+		return (find4(p) == find4(q))
 	end
 =begin
 	unio1和find1使用的是quick-find方法保证当且仅当id[p]等于id[q]的时候p和q是连同的，即在同一连通图中所有的出点在id[]中的值必须全部相同
@@ -72,6 +72,33 @@ class UF
 		@count -= 1
 	end
 
+=begin
+find4和union4是对于加权路径进行压缩的实现，将寻找根节点过程中的所有节点存入数组，再见这些索引对应的数组元素赋值为根节点的值，实现相关节点的路径压缩。
+=end
+
+	def find4 p
+		arry = []
+		while p != @id[p] #寻找根节点
+			arry.push p
+			p = @id[p]		
+		end
+		arry.each {|i| @id[i] = p}
+		return p #返回根节点
+	end
+	def union4 p, q
+		i, j = find4(p), find4(q)
+		return if i == j
+		if @sz[i] < @sz[j]
+			@id[i] = j
+			@sz[j] += @sz[i]
+		else	
+			@id[j] = i
+			@sz[i] += @sz[j]
+		end
+		@count -= 1
+	end
+
+
 end
 
 def getFileNodes filename
@@ -93,8 +120,9 @@ File.open "tinyUF.txt", "r" do |file|
 		ary = line.chomp!.split(' ').map{|str| str.to_i}
 		p, q = ary[0], ary[1]
 		next if uf.connected p, q
-		uf.union3 p, q
+		uf.union4 p, q
 		printf "%d  %d\n", p, q
+		print uf.id, "\n"
 	end
 end
 
