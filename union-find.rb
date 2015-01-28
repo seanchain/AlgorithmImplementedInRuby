@@ -18,7 +18,8 @@ class UF
 		return @count
 	end
 	def connected p, q
-		return (find1(p) == find1(q))
+		#return (find1(p) == find1(q))
+		return (find2(p) == find2(q))
 	end
 =begin
 	unio1和find1使用的是quick-find方法保证当且仅当id[p]等于id[q]的时候p和q是连同的，即在同一连通图中所有的出点在id[]中的值必须全部相同
@@ -35,11 +36,17 @@ class UF
 		@count -= 1
 	end
 =begin
-	union1使用的quick-find问题有一定的问题因为每一次的union操作都需要进行扫描整个数组
+	union1使用的quick-fnd问题有一定的问题因为每一次的union操作都需要进行扫描整个数组,而这样的算法时间复杂度将会达到平方级别，所以应该有算法专门提高union的运算效率.而union2的算法则更像树之间的归并，id[idx]仿佛为点idx的父节点，对于两个将要进行归并的节点，分别找到他们的根节点，对其根节点进行归并，将一树的根节点接于另外一树。
 =end
-	def find2
+	def find2 p
+		p = id[p] while p != id[p]
+		return p
 	end
-	def union2
+	def union2 p, q
+		pRoot, qRoot = find2(p), find2(q)
+		return if pRoot == qRoot
+		id[pRoot] = id[qRoot]
+		@count -= 1
 	end
 
 end
@@ -63,7 +70,7 @@ File.open "tinyUF.txt", "r" do |file|
 		ary = line.chomp!.split(' ').map{|str| str.to_i}
 		p, q = ary[0], ary[1]
 		next if uf.connected p, q
-		uf.union1 p, q
+		uf.union2 p, q
 		printf "%d  %d\n", p, q
 	end
 end
