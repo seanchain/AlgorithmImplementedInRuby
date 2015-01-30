@@ -14,3 +14,8 @@
 > * Weighted-Compressed-Quick-Union
 > 
 
+* Sort
+
+>* Insert Sort
+>* Selection Sort
+>* Bubble Sort
