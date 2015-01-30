@@ -3,6 +3,9 @@
 ###Follow the instruction of the reference book **_Algorithms Fourth Edition_**
 ####Already Finished:
 <hr>
+
+* Binary Search
+* Bag, Stack, Queue Implementation
 * Union-Find 
 
 > * Quick-Find 
