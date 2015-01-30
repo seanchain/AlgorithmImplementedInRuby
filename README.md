@@ -2,4 +2,12 @@
 
 ###Follow the instruction of the reference book **_Algorithms Fourth Edition_**
 ####Already Finished:
-* Union-Find
+<hr>
+* Union-Find 
+
+> * Quick-Find 
+> * Quick-Union 
+> * Weighted-Quick-Union 
+> * Weighted-Compressed-Quick-Union
+> 
+
