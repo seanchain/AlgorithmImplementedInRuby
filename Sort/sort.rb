@@ -27,6 +27,11 @@ module Sort
             num[j + 1] = curr if j != i - 1
         end
     end
+=begin
+
+shell排序的思想是使数组中的任意间隔为h的元素都是有序的。这样的数组被称为h有序数组，即一个h数组就是h个能够互相独立的有序数组编织在一起组成的一个数组
+
+=end
 	def shellSort num
 		n, h = num.size, 1
 		h = 3 * h + 1 while h < n/3
@@ -39,10 +44,7 @@ module Sort
 				end
 			end
 		h /= 3
-    	end    
+        end 
 	end
-
     module_function :selSort, :bubbleSort, :insertSort, :shellSort
-
 end
-
