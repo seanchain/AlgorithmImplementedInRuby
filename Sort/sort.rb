@@ -46,5 +46,35 @@ shell排序的思想是使数组中的任意间隔为h的元素都是有序的�
 		h /= 3 #步长改变
         end 
 	end
-    module_function :selSort, :bubbleSort, :insertSort, :shellSort
+	def mergeSort num, lo, hi
+		#归并排序递归的将一个数组分成两半分别排序，然后将结果归并起来
+		return if lo >= hi
+		mid = lo + (hi - lo)/2
+		mergeSort num, lo, mid
+		mergeSort num, mid + 1, hi
+		Sort.merge num, lo, mid, hi
+	end
+
+	def merge num, lo, mid, hi
+		aux = Array.new
+		i, j = lo, mid + 1
+		(lo..hi).each {|k| aux[k] = num[k]}
+		(lo..hi).each do |k|
+			if i > mid
+				num[k] = aux[j]
+				j += 1
+			elsif j > hi
+				num[k] = aux[i]
+				i += 1
+			elsif aux[j] < aux[i]
+				num[k] = aux[j]
+				j += 1
+			else
+				num[k] = aux[i]
+				i += 1
+			end
+		end
+	end
+
+    module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge
 end
