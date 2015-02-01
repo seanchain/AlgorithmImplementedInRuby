@@ -27,17 +27,22 @@ module Sort
             num[j + 1] = curr if j != i - 1
         end
     end
-    
-    module_function :selSort, :bubbleSort, :insertSort
-    def shellSort num
-    end
-    
+	def shellSort num
+		n, h = num.size, 1
+		h = 3 * h + 1 while h < n/3
+		while h >= 1
+			(h...n).each do |i|
+				j = i
+				while num[j] < num[j - h] && j >= h
+					num[j], num[j - h] = num[j - h], num[j]
+					j -= h
+				end
+			end
+		h /= 3
+    	end    
+	end
+
+    module_function :selSort, :bubbleSort, :insertSort, :shellSort
+
 end
 
-num1 = [1, 4, 3, 6, 14, 7, 5, 2]
-num2 = [2, 5, 3, 12, 4, 2, 7, 6]
-
-Sort.bubbleSort num1
-Sort.selSort num2
-p num1
-p num2
