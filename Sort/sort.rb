@@ -1,32 +1,33 @@
 #! /usr/bin/ruby
 
 module Sort
-    def selSort num
-        (0...num.length).each do |i| 
-            least = i 
-            ((i + 1)...num.length).each do |j| 
-                least = j if num[j] < num[least] 
-                num[i], num[least] = num[least], num[i]
-            end
-        end
+  def selSort num
+    (0...num.length).each do |i| 
+      least = i 
+      ((i + 1)...num.length).each do |j|
+        least = j if num[j] < num[least] 
+        num[i], num[least] = num[least], num[i]
+      end
     end
-    def bubbleSort num
-        (0...num.length).each do |i|
-            (num.length - 1).downto(i) do |j|
-                num[j], num[j - 1] = num[j - 1], num[j] if num[j - 1] > num[j]
-            end
-        end    
+  end
+
+  def bubbleSort num
+    (0...num.length).each do |i|
+      (num.length - 1).downto(i) do |j|
+        num[j], num[j - 1] = num[j - 1], num[j] if num[j - 1] > num[j]
+      end
+    end    
+  end
+  def insertSort num
+    (1...num.length).each do |i|
+      j, curr = i - 1, num[i]
+      while j >= 0 && num[j] > curr
+        num[j + 1] = num[j]
+        j -= 1
+      end
+      num[j + 1] = curr if j != i - 1
     end
-    def insertSort num
-        (1...num.length).each do |i|
-            j, curr = i - 1, num[i]
-            while j >= 0 && num[j] > curr
-                num[j + 1] = num[j]
-                j -= 1
-            end
-            num[j + 1] = curr if j != i - 1
-        end
-    end
+  end
 =begin
 
 shell排序的思想是使数组中的任意间隔为h的元素都是有序的。这样的数组被称为h有序数组，即一个h数组就是h个能够互相独立的有序数组编织在一起组成的一个数组
@@ -75,9 +76,9 @@ shell排序的思想是使数组中的任意间隔为h的元素都是有序的�
 		end
 	end
 
-	def quickSort num
-		
+	def quickSort num	
 	end
 
-    module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort
+  module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort
+
 end
