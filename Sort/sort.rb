@@ -33,51 +33,53 @@ module Sort
 shell排序的思想是使数组中的任意间隔为h的元素都是有序的。这样的数组被称为h有序数组，即一个h数组就是h个能够互相独立的有序数组编织在一起组成的一个数组
 
 =end
-	def shellSort num
-		n, h = num.size, 1 #首先给n和h分别赋值为数组的长度和1
-		h = 3 * h + 1 while h < n/3 #对于h赋值，使得h在小于n/3的情况下分别应该首先使用多少步长的排序方式
-		while h >= 1 #h >= 1时，排序继续 
-			(h...n).each do |i| #从h到n开始遍历
-				j = i
-				while num[j] < num[j - h] && j >= h #如果满足在j位置的元素比j - h 位置的小，则二者交换位置，并需要使得j满足大于h
-					num[j], num[j - h] = num[j - h], num[j]#交换
-					j -= h #j的值-h
-				end
-			end
-		h /= 3 #步长改变
-        end 
-	end
-	def mergeSort num, lo, hi
+  def shellSort num
+    n, h = num.size, 1 #首先给n和h分别赋值为数组的长度和1
+    h = 3 * h + 1 while h < n/3 #对于h赋值，使得h在小于n/3的情况下分别应该首先使用多少步长的排序方式
+    while h >= 1 #h >= 1时，排序继续 
+      (h...n).each do |i| #从h到n开始遍历
+        j = i
+        while num[j] < num[j - h] && j >= h #如果满足在j位置的元素比j - h 位置的小，则二者交换位置，并需要使得j满足大于h
+          num[j], num[j - h] = num[j - h], num[j]#交换
+          j -= h #j的值-h
+        end
+      end
+      h /= 3 #步长改变
+    end 
+  end
+	
+  def mergeSort num, lo, hi
 		#归并排序递归的将一个数组分成两半分别排序，然后将结果归并起来
-		return if lo >= hi
-		mid = lo + (hi - lo)/2
-		mergeSort num, lo, mid
-		mergeSort num, mid + 1, hi
-		Sort.merge num, lo, mid, hi
-	end
+    return if lo >= hi
+    mid = lo + (hi - lo)/2
+    mergeSort num, lo, mid
+    mergeSort num, mid + 1, hi
+    Sort.merge num, lo, mid, hi
+  end
 
-	def merge num, lo, mid, hi
-		aux = Array.new
-		i, j = lo, mid + 1
-		(lo..hi).each {|k| aux[k] = num[k]} #先将所有的元素复制到aux[]中，然后再归并到a[]中
+  def merge num, lo, mid, hi
+    aux = Array.new
+    i, j = lo, mid + 1
+    (lo..hi).each {|k| aux[k] = num[k]} #先将所有的元素复制到aux[]中，然后再归并到a[]中
 =begin
 	方法在归并时，进行了四个条件判断：左边取尽，取右边的元素，右边取尽，取左边的元素，右边的当前元素小于左边的当前元素，右边的当前元素大于左边的当前元素（同所有的归并思想）
 =end
-		(lo..hi).each do |k|
-			if i > mid
-				num[k] = aux[j]; j += 1 
-			elsif j > hi
-				num[k] = aux[i]; i += 1
-			elsif aux[j] < aux[i]
-				num[k] = aux[j]; j += 1
-			else
-				num[k] = aux[i]; i += 1
-			end
-		end
-	end
+    (lo..hi).each do |k|
+      if i > mid
+        num[k] = aux[j]; j += 1 
+      elsif j > hi
+        num[k] = aux[i]; i += 1
+      elsif aux[j] < aux[i]
+        num[k] = aux[j]; j += 1
+      else
+        num[k] = aux[i]; i += 1
+      end
+    end
+  end
 
-	def quickSort num	
-	end
+
+  def quickSort num	
+  end
 
   module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort
 
