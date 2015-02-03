@@ -11,3 +11,4 @@ Sort.mergeSort ary3, 0, ary3.size - 1
 p ary1
 p ary2
 p ary3
+p ary2.shuffle!

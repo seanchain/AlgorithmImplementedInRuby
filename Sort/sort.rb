@@ -64,20 +64,20 @@ shell排序的思想是使数组中的任意间隔为h的元素都是有序的�
 =end
 		(lo..hi).each do |k|
 			if i > mid
-				num[k] = aux[j]
-				j += 1
+				num[k] = aux[j]; j += 1 
 			elsif j > hi
-				num[k] = aux[i]
-				i += 1
+				num[k] = aux[i]; i += 1
 			elsif aux[j] < aux[i]
-				num[k] = aux[j]
-				j += 1
+				num[k] = aux[j]; j += 1
 			else
-				num[k] = aux[i]
-				i += 1
+				num[k] = aux[i]; i += 1
 			end
 		end
 	end
 
-    module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge
+	def quickSort num
+		
+	end
+
+    module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort
 end
