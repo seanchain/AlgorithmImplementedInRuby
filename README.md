@@ -19,3 +19,4 @@
 >* Insert Sort
 >* Selection Sort
 >* Bubble Sort
+>* Merge Sort
