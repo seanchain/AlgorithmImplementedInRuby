@@ -7,17 +7,17 @@
 
 num = []
 while var = gets
-	num.push var.chomp!.to_i   #一次保存输入的数字，并消除其换行符，将其转化为数字
+  num.push var.chomp!.to_i   #一次保存输入的数字，并消除其换行符，将其转化为数字
 end
 
 sum, sum1 = 0, 0
 for i in num
-	sum += i
+  sum += i
 end
 
 average = (Rational sum, num.length).to_f
 num.each do |item|
-	sum1 += (item - average) ** 2
+  sum1 += (item - average) ** 2
 end
 
 sdev = Math::sqrt(sum1 / (num.length - 1))
