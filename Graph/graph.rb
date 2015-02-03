@@ -8,7 +8,7 @@ arr = []
 arr << a << b << c
 p arr
 for item in arr
-	item.each do |key, val|
-		p key, val
-	end
+  item.each do |key, val|
+    p key, val
+  end
 end
