@@ -77,10 +77,37 @@ shell排序的思想是使数组中的任意间隔为h的元素都是有序的�
     end
   end
 
-
-  def quickSort num	
+  def quickSortHelp num, lo, hi
+    return if hi <= lo
+    j = parition num, lo, hi
+    quickSortHelp num, lo, j - 1
+    quickSortHelp num, j + 1, hi
   end
 
-  module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort
+  def parition num, lo, hi
+    i, j = lo + 1, hi
+    v = num[lo]
+    while true
+      while num[i] < v
+        break if i == hi
+        i += 1
+      end
+      while v < num[j]
+        break if j == lo
+        j -= 1
+      end
+      break if i >= j
+      num[i], num[j] = num[j], num[i]
+    end
+    num[lo], num[j] = num[j], num[lo]
+    return j
+  end
+
+  def quickSort num
+    num.shuffle! #将数组随机重排，消除对输入的依赖
+    quickSortHelp num, 0, num.length - 1
+  end
+
+  module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort, :quickSortHelp
 
 end
