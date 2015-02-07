@@ -15,3 +15,4 @@ p ary2
 p ary3
 ary4 = ary3.shuffle
 quickSort ary1
+p ary1

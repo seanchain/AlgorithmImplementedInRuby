@@ -88,11 +88,11 @@ shell排序的思想是使数组中的任意间隔为h的元素都是有序的�
     i, j = lo + 1, hi #初始化i, j的值分别为索引第1和最后一个值
     v = num[lo] #索引排在第0位的值
     while true
-      while num[i] < v #比较左边从左到右，出现大于v则停止
+      while num[i] <= v #比较左边从左到右，出现大于v则停止
         break if i == hi 
         i += 1
       end
-      while v < num[j] #比较从右到左，出现小于v则停止
+      while v <= num[j] #比较从右到左，出现小于v则停止
         break if j == lo
         j -= 1
       end
@@ -108,6 +108,6 @@ shell排序的思想是使数组中的任意间隔为h的元素都是有序的�
     quickSortHelp num, 0, num.length - 1 #带入函数quickSortHelp
   end
 
-  module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort, :quickSortHelp, :quick3way
+  module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort, :quickSortHelp
 
 end
