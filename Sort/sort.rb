@@ -108,6 +108,6 @@ shell排序的思想是使数组中的任意间隔为h的元素都是有序的�
     quickSortHelp num, 0, num.length - 1 #带入函数quickSortHelp
   end
 
-  module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort, :quickSortHelp
+  module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort, :quickSortHelp, :quick3way
 
 end
