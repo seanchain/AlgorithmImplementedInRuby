@@ -78,34 +78,34 @@ shell排序的思想是使数组中的任意间隔为h的元素都是有序的�
   end
 
   def quickSortHelp num, lo, hi
-    return if hi <= lo
-    j = parition num, lo, hi
-    quickSortHelp num, lo, j - 1
-    quickSortHelp num, j + 1, hi
+    return if hi <= lo  #如果高位小于等于地位则返回
+    j = parition num, lo, hi #h获得切分j
+    quickSortHelp num, lo, j - 1 #对于lo..j - 1重新递归排列
+    quickSortHelp num, j + 1, hi #对于j + 1..hi重新递归排列
   end
 
   def parition num, lo, hi
-    i, j = lo + 1, hi
-    v = num[lo]
+    i, j = lo + 1, hi #初始化i, j的值分别为索引第1和最后一个值
+    v = num[lo] #索引排在第0位的值
     while true
-      while num[i] < v
-        break if i == hi
+      while num[i] < v #比较左边从左到右，出现大于v则停止
+        break if i == hi 
         i += 1
       end
-      while v < num[j]
+      while v < num[j] #比较从右到左，出现小于v则停止
         break if j == lo
         j -= 1
       end
-      break if i >= j
-      num[i], num[j] = num[j], num[i]
+      break if i >= j #i >= j整个停止
+      num[i], num[j] = num[j], num[i] #交换num[i]和num[j]的位置
     end
-    num[lo], num[j] = num[j], num[lo]
-    return j
+    num[lo], num[j] = num[j], num[lo] #最后交换num[lo]和num[j]的位置
+    return j #返回j作为切分
   end
 
   def quickSort num
     num.shuffle! #将数组随机重排，消除对输入的依赖
-    quickSortHelp num, 0, num.length - 1
+    quickSortHelp num, 0, num.length - 1 #带入函数quickSortHelp
   end
 
   module_function :selSort, :bubbleSort, :insertSort, :shellSort, :mergeSort, :merge, :quickSort, :quickSortHelp
