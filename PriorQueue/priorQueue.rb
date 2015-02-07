@@ -6,15 +6,15 @@
 
 class Heap
   attr_reader :pq, :n
-  def initialize arr
-    @pq = arr
+  def initialize
+    @pq = []
     @n = @pq.size
   end
   def less i, j
     @pq[i] < @pq[j]
   end
   def swim k
-    while k > 1 && less(k/2, k)
+    while k > 0 && less(k/2, k)
       @pq[k/2], @pq[k] = @pq[k], @pq[k/2]
       k /= 2
     end
@@ -35,8 +35,8 @@ class Heap
   end
   def insert v
     pq[@n] = v
-    print pq
-    self.swim(@n - 1)
+    self.swim(@n)
+    @n += 1
   end
   def delMax
     max = pq[0]
@@ -49,6 +49,11 @@ class Heap
 
 end
 
-heap = Heap.new [2, 3, 5, 6, 8, 4]
+heap = Heap.new
+heap.insert 4
+heap.insert 5
+heap.insert 8
+heap.insert 11
 heap.insert 1
+heap.insert 7
 p heap.pq
