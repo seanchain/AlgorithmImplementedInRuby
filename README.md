@@ -21,3 +21,6 @@
 >* Bubble Sort
 >* Merge Sort
 >* Quick Sort
+>
+
+* Prior Queue (Heap Implementation)
