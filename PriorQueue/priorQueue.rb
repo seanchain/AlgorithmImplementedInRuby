@@ -7,20 +7,21 @@
 class Heap
   attr_reader :pq, :n
   def initialize
-    @pq = []
-    @n = @pq.size
+    @pq = [nil]
+    @n = 0
   end
   def less i, j
-    @pq[i] < @pq[j]
+      @pq[i] < @pq[j]
   end
   def swim k
-    while k > 0 && less(k/2, k)
+    while k > 1 && less(k/2, k)
       @pq[k/2], @pq[k] = @pq[k], @pq[k/2]
       k /= 2
     end
   end
   def sink k
     while 2*k <= @n
+      j = 2*k
       j += 1 if j < @n && less(j, j + 1)
       break if !less(k, j)
       @pq[k], @pq[j] = @pq[j], @pq[k]
@@ -34,26 +35,36 @@ class Heap
     return @n
   end
   def insert v
-    pq[@n] = v
-    self.swim(@n)
     @n += 1
+    @pq[@n] = v
+    self.swim(@n)
   end
   def delMax
-    max = pq[0]
-    pq[0], pq[@n] = pq[@n], pq[0]
+    max = pq[1]
+    pq[1], pq[@n] = pq[@n], pq[1]
     @n -= 1
-    pq[@n] = nil
+    pq.pop
     sink 1
     return max
   end
-
 end
 
 heap = Heap.new
-heap.insert 4
-heap.insert 5
-heap.insert 8
-heap.insert 11
-heap.insert 1
-heap.insert 7
+heap.insert 'P'
+heap.insert 'Q'
+heap.insert 'E'
+heap.delMax
 p heap.pq
+heap.insert 'X'
+p heap.pq
+heap.insert 'A'
+heap.insert 'M'
+print heap.pq
+heap.delMax
+heap.insert 'P'
+heap.insert 'L'
+heap.insert 'E'
+print heap.pq
+heap.delMax
+
+print heap.pq
