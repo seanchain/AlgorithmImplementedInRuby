@@ -1,0 +1,22 @@
+#! /usr/bin/ruby
+
+require './bst.rb'
+
+a = Node.new 5, "Agger"
+b = Node.new 1, "Neuer"
+c = Node.new 3, "Pique"
+d = Node.new 7, "Suarez"
+e = Node.new 6, "Xavi"
+f = Node.new 4, "Arsenal"
+bst = BST.new a
+bst.insert b
+bst.insert c
+bst.insert d
+bst.insert e
+bst.insert f
+p bst.root.value
+p bst.root.right.value
+p bst.root.right.left.value
+p bst.root.left.value
+p bst.root.left.right.value
+p bst.root.left.right.right.value
