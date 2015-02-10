@@ -24,3 +24,6 @@
 >* Heap Sort
 
 * Prior Queue (Heap Implementation)
+* Binary Search Tree
+
+>* Insert nodes
