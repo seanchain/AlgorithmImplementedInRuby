@@ -71,4 +71,14 @@ class BST
     return 1 if x.left == nil and x.right == nil
     return leafcount(x.left) + leafcount(x.right)
   end
+  def depth
+    return height @root
+  end
+  def height x
+    return 0 if x == nil
+    return 1 + getBigger(height(x.left), height(x.right))
+  end
+  def getBigger x, y
+    return x > y ? x : y
+  end
 end
