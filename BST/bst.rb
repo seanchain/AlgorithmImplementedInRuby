@@ -18,11 +18,14 @@ end
 
 class BST
   attr_accessor :root
+  attr_reader :node_count
   def initialize node = nil
     @root = node
+    @node_count = 1
   end
   def insert node #向二叉查找树中插入节点node，需要使用put函数
     @root = self.put @root, node
+    @node_count += 1
   end
   def put x, node
     return Node.new(node.key, node.value) if x == nil
@@ -59,5 +62,13 @@ class BST
   def max x
     return x if x.right == nil
     return max x.right
+  end
+  def leaves
+    self.leafcount @root
+  end
+  def leafcount x
+    return 0 if x == nil
+    return 1 if x.left == nil and x.right == nil
+    return leafcount(x.left) + leafcount(x.right)
   end
 end
