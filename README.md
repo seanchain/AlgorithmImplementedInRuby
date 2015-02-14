@@ -27,3 +27,7 @@
 * Binary Search Tree
 
 >* Insert nodes
+>* Search for node key
+>* Get the BST depth
+>* Get the maximum and minimum node
+>* Get the leaf nodes count of the BST
