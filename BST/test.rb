@@ -23,3 +23,5 @@ p bst.root.left.right.right.value
 
 p bst.getVal 7
 p bst.getVal 14
+p bst.minval
+p bst.maxval

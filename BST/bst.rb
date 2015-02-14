@@ -46,4 +46,18 @@ class BST
       return ex.message
     end
   end
+  def minval
+    return min(@root).value
+  end
+  def min x
+    return x if x.left == nil
+    return min x.left
+  end
+  def maxval
+    return max(@root).value
+  end
+  def max x
+    return x if x.right == nil
+    return max x.right
+  end
 end
