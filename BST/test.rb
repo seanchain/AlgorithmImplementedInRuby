@@ -20,3 +20,6 @@ p bst.root.right.left.value
 p bst.root.left.value
 p bst.root.left.right.value
 p bst.root.left.right.right.value
+
+p bst.getVal 7
+p bst.getVal 14

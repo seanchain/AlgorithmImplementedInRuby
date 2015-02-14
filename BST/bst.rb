@@ -21,7 +21,7 @@ class BST
   def initialize node = nil
     @root = node
   end
-  def insert node
+  def insert node #向二叉查找树中插入节点node，需要使用put函数
     @root = self.put @root, node
   end
   def put x, node
@@ -30,5 +30,20 @@ class BST
     x.right = put x.right, node if node.key > x.key
     x.value = node.value if node.key == x.key
     return x
+  end
+
+  def getVal key  #在BST中查找一个键值为k的元素是否存在，存在则输出get函数
+    return self.get @root, key
+  end
+  def get x, key
+    begin
+      raise "Can't find such key of the BST" if x == nil #根节点为空直接返回
+      cmp = key - x.key
+      return self.get x.left, key if cmp < 0
+      return self.get x.right, key if cmp > 0
+      return x.value if cmp == 0
+    rescue => ex
+      return ex.message
+    end
   end
 end
