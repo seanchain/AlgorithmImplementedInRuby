@@ -31,3 +31,4 @@ p bst.node_count
 
 p bst.leaves
 p bst.depth
+p bst.deleteMax

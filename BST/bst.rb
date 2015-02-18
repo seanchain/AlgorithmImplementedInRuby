@@ -81,4 +81,21 @@ class BST
   def getBigger x, y
     return x > y ? x : y
   end
+  def deleteMin
+    @root = deleteMinHelp @root
+  end
+  def deleteMax
+    @root = deleteMaxHelp @root
+  end
+  def deleteMaxHelp x
+    return x.left if x.right == nil #x无右分支，则直接去左边分支作为删掉最大值
+    x.right = deleteMaxHelp x.right
+    return x
+  end
+  def deleteMinHelp x
+    return x.right if x.left == nil #x无左分支，则直接去邮编分支作为删掉最小值
+    x.left = deleteMinHelp x.left
+    return x
+  end
+
 end
