@@ -31,4 +31,18 @@ class Node
     return false if x == nil
     return x.color == RED
   end
+  def rotateLeft h
+    x = h.right
+    x.left = h
+    x.color = h.color
+    h.color = RED
+    return x
+  end
+  def rotateRight h
+    x = h.right
+    x.right = h
+    x.color = h.color
+    h.color = RED
+    return x
+  end
 end
