@@ -10,4 +10,25 @@
 
 =end
 
+RED = true
+BLACK = false
 
+class Node
+  attr_accessor :left, :right, :color
+  attr_reader :hash
+  def initialize key = nil, val = nil, color = BLACK
+    @hash = Hash.new
+    @hash.store key, val
+    @color = color
+  end
+  def key
+    return @hash.keys[0]
+  end
+  def value
+    return @hash.values[0]
+  end
+  def isRed x
+    return false if x == nil
+    return x.color == RED
+  end
+end
