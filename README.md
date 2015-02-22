@@ -32,3 +32,6 @@
 >* Get the maximum and minimum node
 >* Get the leaf nodes count of the BST
 >* Delete the maximum and minimum number of the BST
+
+* Red Black Tree
+>* red-black tree rotating
